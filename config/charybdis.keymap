@@ -11,33 +11,91 @@
 };
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        atto {
+            bindings = <&kp AT_SIGN>;
+            key-positions = <2 12>;
+        };
+    };
+
+    macros {
+        kakko: kakko {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS>;
+            label = "KAKKO";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         layer_0 {
             bindings = <
-&kp ESC         &kp N1  &kp N2  &kp N3        &kp N4     &kp N5      &kp N6     &kp N7     &kp N8     &kp N9            &kp N0    &kp BACKSPACE
-&kp TAB         &kp Q   &kp W   &kp E         &kp R      &kp T       &kp Y      &kp U      &kp I      &kp O             &kp P     &kp BSLH
-&kp LEFT_SHIFT  &kp A   &kp S   &kp D         &kp F      &kp G       &kp H      &kp J      &kp K      &kp L             &kp SEMI  &kp SQT
-&kp LCTRL       &kp Z   &kp X   &kp C         &kp V      &kp B       &kp N      &kp M      &kp COMMA  &kp LEFT_BRACKET  &kp FSLH  &kp MINUS
-                                &kp LEFT_WIN  &kp SPACE  &mo 1       &kp LALT   &kp GRAVE
-                                              &mkp MB1   &mkp MB2    &kp ENTER
+&kp ESC              &kp Q      &kp W      &kp E      &kp R      &kp T        &kp Y          &kp U        &kp I  &kp O       &kp P          &kp BACKSPACE
+&mt LEFT_SHIFT CLCK  &kp A      &kp S      &kp D      &kp F      &kp G        &kp H          &kp J        &kp K  &kp L       &kp SEMICOLON  &kp RET
+&mt RCTRL LEFT_GUI   &kp Z      &kp X      &kp C      &kp V      &kp B        &kp COMMA      &kp N        &kp M  &kp PERIOD  &kp SLASH      &lt 2 PRINTSCREEN
+&kp CLEAR            &kp CLEAR  &kp CLEAR  &kp F7     &kp SPACE  &kakko       &kp BACKSPACE  &lt 3 MINUS  &mo 1  &kp CLEAR   &kp CLEAR      &kp CLEAR
+                                           &kp CLEAR  &kp CLEAR  &kp CLEAR    &kp CLEAR      &kp CLEAR
+                                                      &kp CLEAR  &kp CLEAR    &kp CLEAR
             >;
+        };
 
-            trackball-bindings = <&tmv_coarse>;
+        layer_2 {
+            bindings = <
+&kp N1  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5    &kp N6  &kp N7  &kp N8  &kp N9  &kp PLUS  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp N4  &kp N5  &kp N6  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp N1  &kp N2  &kp N3  &kp N0    &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans    &trans
+                        &trans  &trans  &trans    &trans  &trans
+                                &trans  &trans    &trans
+            >;
         };
 
         layer_1 {
             bindings = <
-&kp F1          &kp F2  &kp F3  &kp F4        &kp F5     &kp F6        &kp F7     &kp F8      &kp F9      &kp F10            &kp F11  &kp F12
-&kp CAPS        &none   &none   &none         &none      &bt BT_NXT    &none      &none       &kp UP      &none              &none    &none
-&kp LEFT_SHIFT  &none   &none   &none         &none      &bt BT_CLR    &none      &kp LEFT    &kp DOWN    &kp RIGHT          &none    &none
-&kp LCTRL       &none   &none   &none         &none      &none         &none      &none       &kp PERIOD  &kp RIGHT_BRACKET  &none    &kp EQUAL
-                                &kp LEFT_WIN  &kp SPACE  &none         &kp LALT   &kp DELETE
-                                              &mkp MB1   &mkp MB2      &kp ENTER
+&kp F1          &kp QUESTION   &kp AT_SIGN  &kp F4        &kp F5     &kp F6             &kp F7     &none       &kp EQUAL     &none              &kp PERCENT  &kp F12
+&kp CAPS        &kp AMPERSAND  &kp HASH     &kp DOLLAR    &none      &bt BT_NXT         &none      &kp CARET   &kp ASTERISK  &kp RIGHT          &none        &none
+&kp LEFT_SHIFT  &none          &none        &none         &none      &kp EXCLAMATION    &none      &kp LEFT    &kp DOWN      &kp RIGHT          &kp PLUS     &kp EQUAL
+&kp LCTRL       &none          &none        &none         &none      &none              &none      &none       &kp PERIOD    &kp RIGHT_BRACKET  &none        &kp EQUAL
+                                            &kp LEFT_WIN  &kp SPACE  &none              &kp LALT   &kp DELETE
+                                                          &mkp MB1   &mkp MB2           &kp ENTER
             >;
+        };
 
-            trackball-bindings = <&tsl>;
+        layer_3 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp LEFT_ARROW  &kp UP_ARROW    &kp RIGHT_ARROW  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp LEFT_ARROW  &kp UP_ARROW    &kp RIGHT_ARROW  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans          &trans          &trans           &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans
+                                &trans  &trans    &trans
+            >;
+        };
+
+        layer_4 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans
+                                &trans  &trans    &trans
+            >;
+        };
+
+        layer_5 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans     &trans     &trans     &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans     &trans     &trans     &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans     &trans     &trans     &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &mkp LCLK  &mkp RCLK  &mkp MCLK  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans     &trans
+                                &trans  &trans    &trans
+            >;
         };
 
         /* layer_2 {
@@ -77,7 +135,6 @@
             >;
                 
                 
-                trackball-bindings = <&tsl>;
         };
 
         layer_5 {
